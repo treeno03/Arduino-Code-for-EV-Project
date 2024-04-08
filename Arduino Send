@@ -1,0 +1,55 @@
+// Adapted from: https://randomnerdtutorials.com/rf-433mhz-transmitter-receiver-module-with-arduino/
+// Author: Rui Santos
+// Description: This Arduino code uses the RH_ASK library for RF communication via ASK modulation.
+// Modified to read analog values from pins, determines a direction, and transmits this message over the RF module using rf_driver.
+
+#include <RH_ASK.h> //This library enables the Arduino to communicate with RF (Radio Frequency) modules using ASK modulation.
+#include <SPI.H> //SPI is a synchronous serial communication interface used for communicating with peripherals, such as RF modules, that support SPI communication.
+
+RH_ASK rf_driver;
+
+int verPin = A0; // Analog pin connected to Y-axis of joystick
+int horPin = A1; // Analog pin connected to X-axis of joystick
+
+void setup()
+{
+  Serial.begin(9600);
+    // Initialize ASK Object
+    rf_driver.init();
+}
+
+void loop() {
+  int verValue = analogRead(verPin);
+  int horValue = analogRead(horPin);
+
+  char* direction;
+
+  // Check if the value is within the specified range
+  if (verValue >= 1000 && verValue <= 1030) {
+    direction = "forward";
+  } else if (verValue >= 0 && verValue <= 100) {
+    direction = "backward";
+  } else if (horValue >= 0 && horValue <= 100) {
+    direction = "right";
+  } else if (horValue >= 1000 && horValue <= 1030) {
+    direction = "left";
+  } else {
+    direction = "stop";
+  }
+
+  // Print joystick values and direction
+  Serial.print("Vertical: ");
+  Serial.print(verValue);
+  Serial.print(", Horizontal: ");
+  Serial.print(horValue);
+  Serial.print(", Direction: ");
+  Serial.println(direction);
+  
+  char *msg = direction;
+  rf_driver.send((uint8_t *)msg, strlen(msg)); 
+  // this line of code sends the message stored in the msg variable over the RF module using the rf_driver object. 
+  //The message is converted to an array of unsigned 8-bit integers (uint8_t) and its length is determined using strlen(msg).
+  rf_driver.waitPacketSent();
+  //waits until the RF transmission is complete before proceeding.
+  delay(50);
+}
