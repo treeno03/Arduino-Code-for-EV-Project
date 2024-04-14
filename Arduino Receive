@@ -59,7 +59,7 @@ void loop() {
         stopMotors(); // Stop if command is not recognized
     }
     
-    // Add a small delay to prevent excessive looping
+    
     delay(100);
 }
 
