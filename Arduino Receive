@@ -67,48 +67,48 @@ void moveForward() {
     // Motor 1
     digitalWrite(motor1Pin1, HIGH);
     digitalWrite(motor1Pin2, LOW);
-    analogWrite(enA, 255);  // Adjust speed as needed
+    analogWrite(enA, 255); 
 
     // Motor 2
     digitalWrite(motor2Pin1, HIGH);
     digitalWrite(motor2Pin2, LOW);
-    analogWrite(enB, 255);  // Adjust speed as needed
+    analogWrite(enB, 255); 
 }
 
 void moveBackward() {
     // Motor 1
     digitalWrite(motor1Pin1, LOW);
     digitalWrite(motor1Pin2, HIGH);
-    analogWrite(enA, 255);  // Adjust speed as needed
+    analogWrite(enA, 255);  
 
     // Motor 2
     digitalWrite(motor2Pin1, LOW);
     digitalWrite(motor2Pin2, HIGH);
-    analogWrite(enB, 255);  // Adjust speed as needed
+    analogWrite(enB, 255);  
 }
 
 void turnRight() {
     // Motor 1
     digitalWrite(motor1Pin1, HIGH);
     digitalWrite(motor1Pin2, LOW);
-    analogWrite(enA, 150);  // Adjust speed as needed
+    analogWrite(enA, 150);  
 
     // Motor 2
     digitalWrite(motor2Pin1, LOW);
     digitalWrite(motor2Pin2, HIGH);
-    analogWrite(enB, 150);  // Adjust speed as needed
+    analogWrite(enB, 150);  
 }
 
 void turnLeft() {
     // Motor 1
     digitalWrite(motor1Pin1, LOW);
     digitalWrite(motor1Pin2, HIGH);
-    analogWrite(enA, 150);  // Adjust speed as needed
+    analogWrite(enA, 150);  
 
     // Motor 2
     digitalWrite(motor2Pin1, HIGH);
     digitalWrite(motor2Pin2, LOW);
-    analogWrite(enB, 150);  // Adjust speed as needed
+    analogWrite(enB, 150);  
 }
 
 void stopMotors() {
